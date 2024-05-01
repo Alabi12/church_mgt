@@ -1,0 +1,28 @@
+<div class="max-w-xl mx-auto">
+  <p class="text-green-500"><%= notice %></p>
+  <h1 class="text-3xl font-bold mb-4">Church Members</h1>
+  
+  <!-- Search Bar -->
+  <%= form_tag(members_path, method: :get, class: "mb-4") do %>
+    <div class="flex items-center">
+      <%= text_field_tag :search, params[:search], class: "mr-2 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-indigo-500", placeholder: "Search Members" %>
+      <%= submit_tag "Search", class: "px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600" %>
+    </div>
+  <% end %>
+  
+  <div id="members">
+    <% @members.each do |member| %>
+      <div class="bg-white rounded-lg shadow-md mb-4">
+        <div class="p-4">
+          <p><%= link_to "Show this member", member %></p>
+          <%= render member %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="mt-4 flex justify-between">
+    <%= link_to "New member", new_member_path, class: "text-blue-500 text-bold" %>
+    <%= link_to "Back to Churches", churches_path, class: "text-blue-500 text-bold" %>
+  </div>
+</div>

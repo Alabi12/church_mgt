@@ -1,0 +1,20 @@
+<div class="container mx-auto py-8">
+  <!-- Display notice message with green color -->
+  <p class="text-green-600"><%= notice %></p>
+
+  <!-- Render the church partial -->
+  <%= render @church %>
+
+  <!-- Links and button section -->
+  <div class="mt-4 flex items-center justify-between">
+    <!-- Link to edit the church -->
+    <%= link_to "Edit this church", edit_church_path(@church), class: "text-blue-500 hover:text-blue-700 mr-4" %>
+    
+    <!-- Link to navigate back to the list of churches -->
+    <%= link_to "Back to churches", churches_path, class: "text-blue-500 hover:text-blue-700 mr-4" %>
+
+    <!-- Button to delete the church -->
+    <%= button_to "Destroy this church", @church, method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+</div>
+

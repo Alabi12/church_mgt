@@ -1,0 +1,72 @@
+<%= form_with(model: member, local: true, html: {multipart: true, class: "max-w-lg mx-auto bg-white rounded-lg shadow-md p-8"}) do |form| %>
+  <% if member.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <h2><%= pluralize(member.errors.count, "error") %> prohibited this member from being saved:</h2>
+      <ul>
+        <% member.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= form.label :user_id, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :user_id, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+
+  <div class="mb-4">
+    <%= form.label :avatar, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.file_field :avatar, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <% if member.avatar.attached? %>
+      <div class="mt-2">
+        <%= image_tag member.avatar, class: "rounded-lg shadow-md" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :first_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :first_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :last_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :last_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :gender, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :gender, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :date_of_birth, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :date_of_birth, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :contact_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :contact_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :address, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :address, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+    <div class="mb-4">
+    <%= form.label :generational_group, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.select :generational_group, [["CS", "CS"], ["JY", "JY"], ["YPG", "YPG"], ["YAF", "YAF"], ["M/F", "M/F"], ["W/F", "W/F"]], {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+   <div class="mb-4">
+    <%= form.label :service_group, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.select :service_group, [["Brigade", "Brigade"], ["Voices Of Reconciliation", "Voices Of Reconciliation"], ["Bible Study & Prayer Group", "Bible Study & Prayer Group"], ["Church Choir", "Church Choir"], ["Singing Band", "Singing Band"]], {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
+<% end %>

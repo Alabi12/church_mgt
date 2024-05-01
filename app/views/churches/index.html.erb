@@ -1,0 +1,30 @@
+<div class="container mx-auto py-8">
+  <!-- Notice message with green color -->
+  <p class="text-green-600 text-center text-lg"><%= notice %></p>
+
+  <!-- Church list section -->
+  <div id="churches" class="mt-8">
+    <% @churches.each do |church| %>
+      <%= render church %>
+      <p class="text-center mt-4">
+        <%= link_to "Show this church", church, class: "text-blue-500 hover:text-blue-700" %>
+      </p>
+    <% end %>
+  </div>
+
+  <!-- Links to create new church and new member -->
+  <div class="mt-8 text-center">
+    <%= link_to "New Church", new_church_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <%= link_to "New Member", new_member_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" %>
+  </div>
+
+  <!-- Search by name input field -->
+  <div class="mt-8 text-center">
+    <%= form_with(url: members_path, method: "get", class: "mb-4") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search by name", class: "border border-gray-300 rounded py-2 px-4" %>
+      <%= submit_tag "Search", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <% end %>
+  </div>
+
+  <!-- All Members section -->
+</div>

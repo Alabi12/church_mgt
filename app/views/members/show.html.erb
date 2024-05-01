@@ -1,0 +1,31 @@
+<!-- Navigation -->
+<nav class="bg-gray-800 text-white py-4">
+  <div class="container mx-auto flex justify-center space-x-8">
+    <%= link_to "Edit this member", edit_member_path(@member), class: "mr-2 text-blue-500 hover:text-blue-700" %> |
+    <%= link_to "Back to members", members_path, class: "mr-2 text-blue-500 hover:text-blue-700" %>
+
+    <%= button_to "Destroy this member", @member, method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+  <%= link_to "Back to Churches", churches_path, class: "mt-4 text-blue-500 hover:text-blue-700" %>
+</nav>
+
+<!-- Main Content -->
+<div class="container flex mx-auto leading-loose h-screen justify-around align-center px-8 mt-10">
+  <p class="mt-10">
+    <%# <strong>Avatar:</strong> %>
+    <% if @member.avatar.attached? %>
+      <%= image_tag @member.avatar, class: "h-12 w-12" %>
+    <% else %>
+      No avatar available.
+    <% end %>
+  </p>
+
+  <p class="text-green-800"><%= notice %></p>
+
+  <%= render @member %>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-4 text-center">
+  <p>&copy; 2024 Your Company. All rights reserved.</p>
+</footer>

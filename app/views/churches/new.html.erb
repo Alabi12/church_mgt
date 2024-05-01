@@ -1,0 +1,12 @@
+<div class="container mx-auto py-8">
+  <!-- Heading -->
+  <h1 class="text-3xl font-semibold mb-6">New Church</h1>
+
+  <!-- Render the form partial -->
+  <%= render "form", church: @church %>
+
+  <!-- Link to navigate back to the list of churches -->
+  <div class="mt-4">
+    <%= link_to "Back to Churches", churches_path, class: "text-blue-500 hover:text-blue-700" %>
+  </div>
+</div>
