@@ -1,0 +1,2 @@
+module GenerationalsHelper
+end

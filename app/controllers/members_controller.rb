@@ -4,6 +4,12 @@ class MembersController < ApplicationController
   # GET /members or /members.json
   def index
     @members = Member.all
+    @groups = Member.all.group_by(&:group)
+    @members = @members.joins(:cs_members) if params[:group] == "CS"
+    @members = @members.where(id: params[:member_id]) if params[:member_id].present?
+    @members = @members.where('first_name ILIKE ?', "%#{params[:first_name]}%") if params[:first_name].present?
+    @members = @members.joins(:generational_groups).where('generational_groups.name ILIKE ?', "%#{params[:generational_group]}%") if params[:generational_group].present?
+    @members = @members.joins(:service_groups).where('service_groups.name ILIKE ?', "%#{params[:service_group]}%") if params[:service_group].present?
     @members = if params[:search].present?
       Member.where("lower(first_name) LIKE :search OR lower(last_name) LIKE :search", search: "%#{params[:search].downcase}%")
     else
@@ -13,6 +19,9 @@ end
 
   # GET /members/1 or /members/1.json
   def show
+    @member = Member.find(params[:id])
+    @groups = Member.where(group: @member.group).group_by(&:group)
+    selected_groups = params[:selected_groups] || [@member.group]
   end
 
   # GET /members/new
@@ -70,7 +79,7 @@ end
 
     # Only allow a list of trusted parameters through.
     def member_params
-      params.require(:member).permit(:user_id, :first_name, :last_name, :gender, :date_of_birth, :contact_number, :address, :avatar, :generational_group, :service_group)
+      params.require(:member).permit(:user_id, :first_name, :last_name, :gender, :date_of_birth, :contact_number, :address, :avatar, :group, :group2)
       # params.require(:member).permit(:first_name, :last_name, :avatar) 
     end
 end

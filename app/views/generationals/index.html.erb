@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Generationals</h1>
+
+<div id="generationals">
+  <% @generationals.each do |generational| %>
+    <%= render generational %>
+    <p>
+      <%= link_to "Show this generational", generational %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New generational", new_generational_path %>

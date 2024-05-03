@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_01_190108) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_03_011613) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_190108) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "generationals", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "generationals_members", id: false, force: :cascade do |t|
+    t.bigint "generational_id", null: false
+    t.bigint "member_id", null: false
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "category"
@@ -67,7 +84,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_190108) do
     t.datetime "updated_at", null: false
     t.string "generational_group"
     t.string "service_group"
+    t.string "group"
     t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "members_services", id: false, force: :cascade do |t|
+    t.bigint "service_id", null: false
+    t.bigint "member_id", null: false
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

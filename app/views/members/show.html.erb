@@ -20,9 +20,27 @@
     <% end %>
   </p>
 
+  <%= render partial: 'group', locals: { member: @member } %>
+
   <p class="text-green-800"><%= notice %></p>
 
-  <%= render @member %>
+ <% if @member.group == 'YAF' %>
+  <%= render partial: 'yaf', locals: { member: @member } %>
+<% elsif @member.group == 'CS' %>
+  <%= render partial: 'cs', locals: { member: @member } %>
+<% elsif @member.group == 'JY' %>
+  <%= render partial: 'jy', locals: { member: @member } %>
+<% elsif @member.group == 'W/F' %>
+  <%= render partial: 'wf', locals: { member: @member } %>
+<% elsif @member.group == 'YPG' %>
+  <%= render partial: 'ypg', locals: { member: @member } %>
+<% elsif @member.group == 'M/F' %>
+  <%= render partial: 'mf', locals: { member: @member } %>
+<% else %>
+<% end %>
+
+<%= render partial: 'grouped_members', locals: { groups: @groups } %>
+
 </div>
 
 <!-- Footer -->

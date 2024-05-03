@@ -15,7 +15,6 @@
     <%= form.text_field :user_id, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
 
-
   <div class="mb-4">
     <%= form.label :avatar, class: "block text-gray-700 text-sm font-bold mb-2" %>
     <%= form.file_field :avatar, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
@@ -56,14 +55,13 @@
     <%= form.text_area :address, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
 
-    <div class="mb-4">
-    <%= form.label :generational_group, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= form.select :generational_group, [["CS", "CS"], ["JY", "JY"], ["YPG", "YPG"], ["YAF", "YAF"], ["M/F", "M/F"], ["W/F", "W/F"]], {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  <div class="field">
+    <%= form.label :group %>
+    <%= form.select :group, Member.groups.keys.map { |g| [g.humanize, g] } %>
   </div>
 
-   <div class="mb-4">
-    <%= form.label :service_group, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= form.select :service_group, [["Brigade", "Brigade"], ["Voices Of Reconciliation", "Voices Of Reconciliation"], ["Bible Study & Prayer Group", "Bible Study & Prayer Group"], ["Church Choir", "Church Choir"], ["Singing Band", "Singing Band"]], {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+   <div id="member_data">
+    <!-- Member data will be displayed here -->
   </div>
 
   <div class="mb-4">

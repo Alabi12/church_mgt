@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @generational %>
+
+<div>
+  <%= link_to "Edit this generational", edit_generational_path(@generational) %> |
+  <%= link_to "Back to generationals", generationals_path %>
+
+  <%= button_to "Destroy this generational", @generational, method: :delete %>
+</div>

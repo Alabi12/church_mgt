@@ -11,16 +11,18 @@
   <% end %>
   
   <div id="members">
-    <% @members.each do |member| %>
-      <div class="bg-white rounded-lg shadow-md mb-4">
-        <div class="p-4">
-          <p><%= link_to "Show this member", member %></p>
-          <%= render member %>
-        </div>
+  <% @members.each do |member| %>
+    <div class="bg-white rounded-lg shadow-md mb-4">
+      <div class="p-4">
+        <p><%= link_to "Show this member", member %></p>
+        <%= render member %>
       </div>
-    <% end %>
-  </div>
-  
+    </div>
+  <% end %>
+</div>
+
+<%= render 'grouped_members' %>
+
   <div class="mt-4 flex justify-between">
     <%= link_to "New member", new_member_path, class: "text-blue-500 text-bold" %>
     <%= link_to "Back to Churches", churches_path, class: "text-blue-500 text-bold" %>
