@@ -1,30 +1,41 @@
-<div class="max-w-xl mx-auto">
-  <p class="text-green-500"><%= notice %></p>
-  <h1 class="text-3xl font-bold mb-4">Church Members</h1>
-  
-  <!-- Search Bar -->
-  <%= form_tag(members_path, method: :get, class: "mb-4") do %>
-    <div class="flex items-center">
+<!-- Navigation -->
+<nav class="bg-gray-800 text-white py-4">
+  <div class="container mx-auto flex justify-between items-center px-4">
+    <h2 class="text-2xl font-bold">Church Members</h2>
+    <%= form_tag(members_path, method: :get, class: "flex items-center") do %>
       <%= text_field_tag :search, params[:search], class: "mr-2 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-indigo-500", placeholder: "Search Members" %>
       <%= submit_tag "Search", class: "px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600" %>
-    </div>
-  <% end %>
+    <% end %>
+    <%= link_to "New member", new_member_path, class: "text-blue-500 font-bold" %>
+    <%= link_to "Back to Churches", churches_path, class: "text-blue-500 font-bold" %>
+  </div>
+</nav>
+
+<br>
+
+<div class="max-w-xl mx-auto">
+  <p class="text-green-500"><%= notice %></p>
   
   <div id="members">
-  <% @members.each do |member| %>
-    <div class="bg-white rounded-lg shadow-md mb-4">
-      <div class="p-4">
-        <p><%= link_to "Show this member", member %></p>
-        <%= render member %>
+    <% @members.each do |member| %>
+      <div class="bg-white rounded-lg shadow-md mb-4">
+        <div class="p-4">
+          <p><%= link_to "Show", member, class: "text-blue-500 font-bold hover:underline" %></p>
+          <table>
+            <tr>
+              <td class="px-4 py-2 text-sm font-semibold text-gray-700">First Name:</td>
+              <td class="px-4 py-2 text-sm text-gray-600"><%= member.first_name %></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 text-sm font-semibold text-gray-700">Last Name:</td>
+              <td class="px-4 py-2 text-sm text-gray-600"><%= member.last_name %></td>
+            </tr>
+            <!-- Add more attributes here -->
+          </table>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
-
-<%= render 'grouped_members' %>
-
-  <div class="mt-4 flex justify-between">
-    <%= link_to "New member", new_member_path, class: "text-blue-500 text-bold" %>
-    <%= link_to "Back to Churches", churches_path, class: "text-blue-500 text-bold" %>
+    <% end %>
   </div>
+
+  <%= render 'grouped_members' %>
 </div>

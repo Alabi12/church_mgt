@@ -10,19 +10,21 @@
     </div>
   <% end %>
 
-  <div class="mb-4">
-    <%= form.label :user_id, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= form.text_field :user_id, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-  </div>
+
 
   <div class="mb-4">
-    <%= form.label :avatar, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.label :photo, class: "block text-gray-700 text-sm font-bold mb-2" %>
     <%= form.file_field :avatar, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     <% if member.avatar.attached? %>
       <div class="mt-2">
         <%= image_tag member.avatar, class: "rounded-lg shadow-md" %>
       </div>
     <% end %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
 
   <div class="mb-4">
@@ -34,10 +36,70 @@
     <%= form.label :last_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
     <%= form.text_field :last_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
+  <div class="mb-4">
+    <%= form.label :membership_status, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :lembership_status, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
   <div class="mb-4">
     <%= form.label :gender, class: "block text-gray-700 text-sm font-bold mb-2" %>
     <%= form.text_field :gender, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :communion_status, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :communion_status, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :nationality, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :nationality, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :hometown, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :hometown, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :region, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :region, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :profession, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :profession, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :occupation, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :occupation, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :employer, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :employer, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :educational_level, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :educational_level, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :name_of_school, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :name_of_school, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :school_address, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :school_address, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :admission_date, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :admission_date, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :date_of_completion, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :date_of_completion, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :course, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :course, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :region, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :region, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
 
   <div class="mb-4">
@@ -46,13 +108,147 @@
   </div>
 
   <div class="mb-4">
-    <%= form.label :contact_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= form.text_field :contact_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= form.label :date_Born, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :date_Born, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
 
   <div class="mb-4">
-    <%= form.label :address, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= form.text_area :address, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= form.label :place_of_Birth, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :place_of_Birth, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :region, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :region, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <%# Contact Details %>
+  <div class="mb-4">
+    <%= form.label :home_phone, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :home_phone, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :mobile, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :mobile, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :work_phone, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :work_phone, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :email_address, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :email_address, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :postal_address, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :postal_address, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :house_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :house_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :location, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :location, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+<%# Baptismal Details %>
+  <div class="mb-4">
+  <h2 class="text-gray-900 text-sm font-bold mb-4 items-center text-blue-700">Baptismal Details</h2>
+    <%= form.label :date_baptised, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :date_baptised, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :place_of_baptism, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :place_of_baptism, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :minister, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :minister, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :certificate_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :certificate_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <%# Confirmation Details %>
+
+  <div class="mb-4">
+    <h2 class="text-gray-900 text-sm font-bold mb-4 items-center text-blue-700">Confirmation Details</h2>
+    <%= form.label :date_confirm, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :date_confirm, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :place_confirm, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :place_confirm, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :minister, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :minister, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :certificate_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :certificate_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :certificate_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :certificate_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :memory_verse, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :memory_verse, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :date_joined, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :date_joined, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :how_did_you_become_a_member, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :how_did_you_become_a_member, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <%# Marriage Details %>
+  <div class="mb-4">
+    <%= form.label :marital_statue, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :marital_statue, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :certificate_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :certificate_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :date_of_marriage, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :date_of_marriage, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :type_of_marriage, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :type_of_marriage, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :place_of_marriage, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :place_of_marriage, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :minister, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :minister, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :spouse_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :spouse_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :hometown, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :hometown, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :church, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :church, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :mobile_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_area :mobile_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
 
   <div class="field">

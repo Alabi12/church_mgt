@@ -1,13 +1,178 @@
 <div class="max-w-xl mx-auto">
-    <div class="bg-white rounded-lg shadow-md mb-4">
-      <div class="p-4">
-        <p class="font-semibold text-lg">User: <%= member.user_id %></p>
-        <p class="text-gray-700">First Name: <%= member.first_name %></p>
-        <p class="text-gray-700">Last Name: <%= member.last_name %></p>
-        <p class="text-gray-700">Gender: <%= member.gender %></p>
-        <p class="text-gray-700">Date of Birth: <%= member.date_of_birth %></p>
-        <p class="text-gray-700">Contact Number: <%= member.contact_number %></p>
-        <p class="text-gray-700">Address: <%= member.address %></p>
-      </div>
+  <div class="bg-white rounded-lg shadow-md mb-4">
+    <div class="p-4">
+      <table class="table-auto">
+        <tbody>
+          <tr>
+            <td class="font-semibold">Title:</td>
+            <td><%= member.title %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">First Name:</td>
+            <td><%= member.first_name %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Last Name:</td>
+            <td><%= member.last_name %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Member id:</td>
+            <td><%= member.id %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Gender:</td>
+            <td><%= member.gender %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Communion Status:</td>
+            <td><%= member.communion_status %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Nationality:</td>
+            <td><%= member.nationality %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Hometown:</td>
+            <td><%= member.hometown %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Region:</td>
+            <td><%= member.region %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Profession:</td>
+            <td><%= member.profession %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Occupation:</td>
+            <td><%= member.occupation %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Employer:</td>
+            <td><%= member.employer %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Educational Level:</td>
+            <td><%= member.educational_level %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Name Of School:</td>
+            <td><%= member.name_of_school%></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">School Address:</td>
+            <td><%= member.school_address %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Admission Date:</td>
+            <td><%= member.admission_date %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Date Of Completion:</td>
+            <td><%= member.date_of_completion %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Course:</td>
+            <td><%= member.course %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Course:</td>
+            <td><%= member.course %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Date Of Birth:</td>
+            <td><%= member.date_of_birth%></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Home Phone:</td>
+            <td><%= member.home_phone %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Mobile:</td>
+            <td><%= member.mobile %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Work Phone:</td>
+            <td><%= member.work_phone %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Email Address:</td>
+            <td><%= member.email_address %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Postal Address:</td>
+            <td><%= member.postal_address %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">House Number:</td>
+            <td><%= member.house_number %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Location:</td>
+            <td><%= member.location %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Place Of Baptism:</td>
+            <td><%= member.place_of_baptism %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Minister :</td>
+            <td><%= member.minister_baptism %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Certificate Number:</td>
+            <td><%= member.certificate_number_baptism %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Date Confirm:</td>
+            <td><%= member.date_confirm %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Minister:</td>
+            <td><%= member.minister_confirm %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Memory Verse:</td>
+            <td><%= member.memory_verse %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Date Joined:</td>
+            <td><%= member.date_joined %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">How Did You Become A Member:</td>
+            <td><%= member.how_become_member %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Marital Status:</td>
+            <td><%= member.marital_status %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Date Of Marriage:</td>
+            <td><%= member.date_of_marriage %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Type Of Marriage:</td>
+            <td><%= member.type_of_marriage %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Place Of Marriage:</td>
+            <td><%= member.place_of_marriage %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Spouse Name:</td>
+            <td><%= member.spouse_name %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Church:</td>
+            <td><%= member.church_spouse %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Mobile Number:</td>
+            <td><%= member.mobile_number_spouse %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>

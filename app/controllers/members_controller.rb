@@ -1,45 +1,54 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_member, only: %i[show edit update destroy new_payment create_payment]
 
-  # GET /members or /members.json
   def index
-    @members = Member.all
-    @groups = Member.all.group_by(&:group)
-    @members = @members.joins(:cs_members) if params[:group] == "CS"
-    @members = @members.where(id: params[:member_id]) if params[:member_id].present?
-    @members = @members.where('first_name ILIKE ?', "%#{params[:first_name]}%") if params[:first_name].present?
-    @members = @members.joins(:generational_groups).where('generational_groups.name ILIKE ?', "%#{params[:generational_group]}%") if params[:generational_group].present?
-    @members = @members.joins(:service_groups).where('service_groups.name ILIKE ?', "%#{params[:service_group]}%") if params[:service_group].present?
-    @members = if params[:search].present?
-      Member.where("lower(first_name) LIKE :search OR lower(last_name) LIKE :search", search: "%#{params[:search].downcase}%")
-    else
-      Member.all
-    end
-end
-
-  # GET /members/1 or /members/1.json
-  def show
-    @member = Member.find(params[:id])
-    @groups = Member.where(group: @member.group).group_by(&:group)
-    selected_groups = params[:selected_groups] || [@member.group]
+    @members = search_members
+    @groups = @members.group_by(&:group)
+    @members = filter_by_group(@members)
+    @members = filter_by_member_id(@members)
+    @members = filter_by_first_name(@members)
+    @members = filter_by_generational_group(@members)
+    @members = filter_by_service_group(@members)
   end
 
-  # GET /members/new
+  def show
+    @groups = Member.where(group: @member.group).group_by(&:group)
+    @selected_groups = params[:selected_groups] || [@member.group]
+    @payments = @member.payments
+  end
+
   def new
     @member = Member.new
   end
 
-  # GET /members/1/edit
   def edit
   end
 
-  # POST /members or /members.json
-  def create
-    @member = Member.new(member_params)
+  def new_payment
+    @payment = Payment.new
+  end
 
+  def create_payment
+    @payment = @member.payments.build(payment_params)
+
+    if @payment.save
+      redirect_to @member, notice: 'Payment successfully saved.'
+    else
+      render :new_payment
+    end
+  end
+
+  def payment_transactions
+    @payments = @member.payments
+  end
+
+  def create
+    @member = current_user.members.build(member_params)
+  
     respond_to do |format|
       if @member.save
-        format.html { redirect_to member_url(@member), notice: "Member was successfully created." }
+        format.html { redirect_to member_url(@member), notice: 'Member was successfully created.' }
         format.json { render :show, status: :created, location: @member }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,11 +57,10 @@ end
     end
   end
 
-  # PATCH/PUT /members/1 or /members/1.json
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to member_url(@member), notice: "Member was successfully updated." }
+        format.html { redirect_to member_url(@member), notice: 'Member was successfully updated.' }
         format.json { render :show, status: :ok, location: @member }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,25 +69,61 @@ end
     end
   end
 
-  # DELETE /members/1 or /members/1.json
   def destroy
     @member.destroy!
 
     respond_to do |format|
-      format.html { redirect_to members_url, notice: "Member was successfully destroyed." }
+      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_member
-      @member = Member.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def member_params
-      params.require(:member).permit(:user_id, :first_name, :last_name, :gender, :date_of_birth, :contact_number, :address, :avatar, :group, :group2)
-      # params.require(:member).permit(:first_name, :last_name, :avatar) 
+  def set_member
+    @member = Member.find(params[:id])
+  end
+
+  def member_params
+    params.require(:member).permit(:avatar, :title, :first_name, :last_name, :member_id, :gender, :communion_status, :nationality, :hometown, :region, :profession, :occupation, :employer, :educational_level, :name_of_school, :school_address, :admission_date, :date_of_completion, :course, :date_of_birth, :home_phone, :mobile, :work_phone, :email_address, :postal_address, :house_number, :location, :date_of_baptism, :place_of_baptism, :minister_baptism, :certificate_number_baptism, :date_confirm, :place_of_confirm, :minister_confirm, :certificate_number_confirm, :memory_verse, :date_joined, :marital_status, :date_of_marriage, :type_of_marriage, :place_of_marriage, :how_become_member, :spouse_name, :church_spouse, :mobile_number_spouse, :mobile, :avatar, :group, :group2,
+    
+    )
+  end
+
+  def payment_params
+    params.require(:payment).permit(:amount, :payment_method, :payment_category)
+  end
+
+  def search_members
+    if params[:search].present?
+      Member.where("lower(first_name) LIKE :search OR lower(last_name) LIKE :search", search: "%#{params[:search].downcase}%")
+    else
+      Member.all
     end
+  end
+
+  def filter_by_group(members)
+    members = members.joins(:cs_members) if params[:group] == 'CS'
+    members
+  end
+
+  def filter_by_member_id(members)
+    members = members.where(id: params[:member_id]) if params[:member_id].present?
+    members
+  end
+
+  def filter_by_first_name(members)
+    members = members.where('first_name ILIKE ?', "%#{params[:first_name]}%") if params[:first_name].present?
+    members
+  end
+
+  def filter_by_generational_group(members)
+    members = members.joins(:generational_groups).where('generational_groups.name ILIKE ?', "%#{params[:generational_group]}%") if params[:generational_group].present?
+    members
+  end
+
+  def filter_by_service_group(members)
+    members = members.joins(:service_groups).where('service_groups.name ILIKE ?', "%#{params[:service_group]}%") if params[:service_group].present?
+    members
+  end
 end

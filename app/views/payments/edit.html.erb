@@ -1,0 +1,17 @@
+<nav class="bg-gray-800 py-4">
+  <div class="container mx-auto flex justify-between items-center px-4">
+    <h1 class="text-white text-2xl">Editing Payment</h1>
+    <div>
+      <%= link_to "Show this Payment", @payment, class: "px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 mr-2" %>
+      <%= link_to "Back to Payments", payments_path, class: "px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600" %>
+    </div>
+  </div>
+</nav>
+
+<div>
+
+<%= render "form", payment: @payment %>
+</div>
+
+
+

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # Define resources for main models
+  resources :payments
   resources :services
   resources :generationals
   resources :members
@@ -6,17 +8,20 @@ Rails.application.routes.draw do
   resources :churches
   devise_for :users
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  # Define nested routes for members
+  resources :members do
+    get 'new_payment', on: :member
+    get 'payment_transactions', on: :member
+    resources :payments, only: [:new, :create]
+  end
+  
+  # Custom routes
   get '/cs_groups', to: 'generational_groups#cs_groups'
-
   get '/grouped_members', to: 'members#grouped_members', as: 'grouped_members'
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  
+  # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Root route
   root to: "churches#index"
 end

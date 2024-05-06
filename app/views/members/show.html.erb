@@ -1,49 +1,76 @@
 <!-- Navigation -->
-<nav class="bg-gray-800 text-white py-4">
-  <div class="container mx-auto flex justify-center space-x-8">
-    <%= link_to "Edit this member", edit_member_path(@member), class: "mr-2 text-blue-500 hover:text-blue-700" %> |
-    <%= link_to "Back to members", members_path, class: "mr-2 text-blue-500 hover:text-blue-700" %>
-
-    <%= button_to "Destroy this member", @member, method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+<nav class="bg-gray-800 text-white py-2 flex">
+  <div class="container mx-auto flex justify-center mt-4 space-x-4">
+    <%= link_to "Update", edit_member_path(@member), class: "mr-2 text-blue-500 hover:text-blue-700" %>
+    <%= link_to "Back", members_path, class: "mr-2 text-blue-500 hover:text-blue-700" %>
+    
+    <%= button_to "Delete", @member, method: :delete, class: "text-blue-500 hover:text-blue-700" %>
   </div>
-  <%= link_to "Back to Churches", churches_path, class: "mt-4 text-blue-500 hover:text-blue-700" %>
+  <div class="flex justify-center mt-4 space-x-4 mr-10">
+    <%= link_to "Back", churches_path, class: "text-blue-500 hover:text-blue-700" %>
+    <%= link_to 'Pay', new_payment_member_path(@member), class: "text-blue-500 hover:text-blue-700" %>
+    <%= link_to 'View', payment_transactions_member_path(@member), class: "text-blue-500 hover:text-blue-700" %>
+  </div>
 </nav>
 
 <!-- Main Content -->
-<div class="container flex mx-auto leading-loose h-screen justify-around align-center px-8 mt-10">
-  <p class="mt-10">
+<div class="container h-auto mx-auto items-center px-4 mt-5">
+  <div class="mt-10">
     <%# <strong>Avatar:</strong> %>
     <% if @member.avatar.attached? %>
-      <%= image_tag @member.avatar, class: "h-12 w-12" %>
+      <%= image_tag @member.avatar, class: "h-20 w-20 rounded-full" %>
     <% else %>
       No avatar available.
     <% end %>
-  </p>
+</div>
 
   <%= render partial: 'group', locals: { member: @member } %>
 
   <p class="text-green-800"><%= notice %></p>
 
- <% if @member.group == 'YAF' %>
-  <%= render partial: 'yaf', locals: { member: @member } %>
-<% elsif @member.group == 'CS' %>
-  <%= render partial: 'cs', locals: { member: @member } %>
-<% elsif @member.group == 'JY' %>
-  <%= render partial: 'jy', locals: { member: @member } %>
-<% elsif @member.group == 'W/F' %>
-  <%= render partial: 'wf', locals: { member: @member } %>
-<% elsif @member.group == 'YPG' %>
-  <%= render partial: 'ypg', locals: { member: @member } %>
-<% elsif @member.group == 'M/F' %>
-  <%= render partial: 'mf', locals: { member: @member } %>
-<% else %>
-<% end %>
+  <% case @member.group %>
+    <% when 'YAF' %>
+      <%= render partial: 'yaf', locals: { member: @member } %>
+    <% when 'CS' %>
+      <%= render partial: 'cs', locals: { member: @member } %>
+    <% when 'JY' %>
+      <%= render partial: 'jy', locals: { member: @member } %>
+    <% when 'W/F' %>
+      <%= render partial: 'wf', locals: { member: @member } %>
+    <% when 'YPG' %>
+      <%= render partial: 'ypg', locals: { member: @member } %>
+    <% when 'M/F' %>
+      <%= render partial: 'mf', locals: { member: @member } %>
+    <% else %>
+  <% end %>
+<br><hr><br>
+  <div id="member">
+    <%= render partial: 'member', locals: { member: @member } %>
+  </div>
 
-<%= render partial: 'grouped_members', locals: { groups: @groups } %>
 
+<%# REVIEW THIS SECTION %>
+  <div>
+    <h2 class="text-2xl font-bold mb-4">Payment Transactions</h2>
+    <table class="table-auto border-collapse border border-gray-300">
+      <tbody>
+        <% @payments.each do |payment| %>
+          <tr class="border-b border-gray-200">
+            <td class="px-4 py-2">Amount:</td>
+            <td class="px-4 py-2"><%= payment.amount %></td>
+          </tr>
+          <tr class="border-b border-gray-200">
+            <td class="px-4 py-2">Payment Method:</td>
+            <td class="px-4 py-2"><%= payment.payment_method %></td>
+          </tr>
+          <!-- Add more payment attributes as needed -->
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<!-- Footer -->
-<footer class="bg-gray-800 text-white py-4 text-center">
-  <p>&copy; 2024 Your Company. All rights reserved.</p>
+<footer class="bg-gray-800 text-white py-2 text-center fixed bottom-0 w-full">
+  <p>&copy; 2024 P.C.G Zimmermann Mem. Nungua | All rights reserved.</p>
 </footer>
+

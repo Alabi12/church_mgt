@@ -1,0 +1,26 @@
+<div id="<%= dom_id payment %>">
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white border rounded-md">
+      <thead>
+        <tr>
+          <th class="px-4 py-2 text-center bg-gray-200">First Name</th>
+          <th class="px-4 py-2 text-center bg-gray-200">Last Name</th>
+          <th class="px-4 py-2 text-center bg-gray-200">Amount</th>
+          <th class="px-4 py-2 text-center bg-gray-200">Payment Method</th>
+          <th class="px-4 py-2 text-center bg-gray-200">Payment Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if payment.member %>
+          <tr>
+            <td class="px-4 py-2 text-center"><%= payment.member.first_name %></td>
+            <td class="px-4 py-2 text-center"><%= payment.member.last_name %></td>
+            <td class="px-4 py-2 text-center"><%= payment.amount %></td>
+            <td class="px-4 py-2 text-center"><%= payment.payment_method %></td>
+            <td class="px-4 py-2 text-center"><%= payment.payment_category %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

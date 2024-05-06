@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_03_011613) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_05_170150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,12 +85,68 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_011613) do
     t.string "generational_group"
     t.string "service_group"
     t.string "group"
+    t.string "title"
+    t.string "member_status"
+    t.string "communion_status"
+    t.string "nationality"
+    t.string "hometown"
+    t.string "region"
+    t.string "profession"
+    t.string "occupation"
+    t.string "employer"
+    t.string "educational_level"
+    t.date "day_born"
+    t.string "place_of_birth"
+    t.string "home_phone"
+    t.string "mobile"
+    t.string "work_phone"
+    t.string "email_address"
+    t.string "postal_address"
+    t.string "house_number"
+    t.string "location"
+    t.date "date_baptised"
+    t.string "place_of_baptism"
+    t.string "minister_baptism"
+    t.string "certificate_number_baptism"
+    t.date "date_confirm"
+    t.string "place_confirm"
+    t.string "minister_confirm"
+    t.string "certificate_number_confirm"
+    t.string "memory_verse"
+    t.date "date_joined"
+    t.string "how_become_member"
+    t.string "marital_status"
+    t.string "certificate_number_marriage"
+    t.date "date_of_marriage"
+    t.string "type_of_marriage"
+    t.string "place_of_marriage"
+    t.string "minister_marriage"
+    t.string "spouse_name"
+    t.string "home_town_spouse"
+    t.string "church_spouse"
+    t.string "mobile_number_spouse"
+    t.string "name_of_school"
+    t.string "school_address"
+    t.date "admission_date"
+    t.date "date_of_completion"
+    t.string "course"
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
   create_table "members_services", id: false, force: :cascade do |t|
     t.bigint "service_id", null: false
     t.bigint "member_id", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.decimal "amount"
+    t.bigint "member_id", null: false
+    t.string "payment_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "payment_category"
+    t.date "date"
+    t.index ["member_id"], name: "index_payments_on_member_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -114,4 +170,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_011613) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "members", "users"
+  add_foreign_key "payments", "members"
 end
