@@ -3,13 +3,11 @@
   <div class="container mx-auto flex justify-center mt-4 space-x-4">
     <%= link_to "Update", edit_member_path(@member), class: "mr-2 text-blue-500 hover:text-blue-700" %>
     <%= link_to "Back", members_path, class: "mr-2 text-blue-500 hover:text-blue-700" %>
-    
     <%= button_to "Delete", @member, method: :delete, class: "text-blue-500 hover:text-blue-700" %>
+    <%= link_to "New Post", new_member_post_path(@member), class: "mr-2 text-blue-500 hover:text-blue-700" %>
   </div>
   <div class="flex justify-center mt-4 space-x-4 mr-10">
     <%= link_to "Back", churches_path, class: "text-blue-500 hover:text-blue-700" %>
-    <%= link_to 'Pay', new_payment_member_path(@member), class: "text-blue-500 hover:text-blue-700" %>
-    <%= link_to 'View', payment_transactions_member_path(@member), class: "text-blue-500 hover:text-blue-700" %>
   </div>
 </nav>
 
@@ -47,28 +45,8 @@
   <div id="member">
     <%= render partial: 'member', locals: { member: @member } %>
   </div>
-
-
-<%# REVIEW THIS SECTION %>
-  <div>
-    <h2 class="text-2xl font-bold mb-4">Payment Transactions</h2>
-    <table class="table-auto border-collapse border border-gray-300">
-      <tbody>
-        <% @payments.each do |payment| %>
-          <tr class="border-b border-gray-200">
-            <td class="px-4 py-2">Amount:</td>
-            <td class="px-4 py-2"><%= payment.amount %></td>
-          </tr>
-          <tr class="border-b border-gray-200">
-            <td class="px-4 py-2">Payment Method:</td>
-            <td class="px-4 py-2"><%= payment.payment_method %></td>
-          </tr>
-          <!-- Add more payment attributes as needed -->
-        <% end %>
-      </tbody>
-    </table>
-  </div>
 </div>
+
 
 <footer class="bg-gray-800 text-white py-2 text-center fixed bottom-0 w-full">
   <p>&copy; 2024 P.C.G Zimmermann Mem. Nungua | All rights reserved.</p>

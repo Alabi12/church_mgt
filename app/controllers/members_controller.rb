@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_member, only: %i[show edit update destroy new_payment create_payment]
+  before_action :set_member, only: [:show, :edit, :update, :destroy]
 
   def index
     @members = search_members
@@ -15,7 +15,11 @@ class MembersController < ApplicationController
   def show
     @groups = Member.where(group: @member.group).group_by(&:group)
     @selected_groups = params[:selected_groups] || [@member.group]
-    @payments = @member.payments
+  end
+
+
+  def posts
+    @posts = @member.posts
   end
 
   def new
@@ -23,24 +27,6 @@ class MembersController < ApplicationController
   end
 
   def edit
-  end
-
-  def new_payment
-    @payment = Payment.new
-  end
-
-  def create_payment
-    @payment = @member.payments.build(payment_params)
-
-    if @payment.save
-      redirect_to @member, notice: 'Payment successfully saved.'
-    else
-      render :new_payment
-    end
-  end
-
-  def payment_transactions
-    @payments = @member.payments
   end
 
   def create
@@ -90,9 +76,6 @@ class MembersController < ApplicationController
     )
   end
 
-  def payment_params
-    params.require(:payment).permit(:amount, :payment_method, :payment_category)
-  end
 
   def search_members
     if params[:search].present?
@@ -125,5 +108,14 @@ class MembersController < ApplicationController
   def filter_by_service_group(members)
     members = members.joins(:service_groups).where('service_groups.name ILIKE ?', "%#{params[:service_group]}%") if params[:service_group].present?
     members
+  end
+
+  private
+
+  def set_member
+    @member = Member.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Member not found."
+    redirect_to members_path
   end
 end

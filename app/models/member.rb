@@ -7,8 +7,9 @@ class Member < ApplicationRecord
 
   enum group: { yaf: 'YAF', cs: 'CS', jy: 'JY', wf: 'W/F', ypg: 'YPG', mf: 'M/F'}, _suffix: true
   # enum group2: { choir: 'CHURCU_CHOIR', bb: 'BOYS_BRIGADE', gb: 'GIRLS_BRIGADE', vor: 'VOR', bspg: 'BSPG'}, _suffix: true
-
-  has_many :payments
+  
+  has_many :posts, dependent: :destroy
+  # has_many :posts
   
   def full_name
     "#{first_name} #{last_name}"
