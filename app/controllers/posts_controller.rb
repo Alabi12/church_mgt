@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  
   def show
   end
 
@@ -15,15 +16,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.member = @member
-
+    @post = @member.posts.new(post_params)
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to @member, notice: 'Post was successfully created.'
     else
       render :new
     end
   end
+
 
   def edit
   end

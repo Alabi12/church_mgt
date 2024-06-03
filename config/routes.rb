@@ -4,9 +4,6 @@ Rails.application.routes.draw do
   # Define resources for main models
   resources :services
   resources :generationals
-  # resources :members do
-  #   get :posts, on: :member
-  # end
 
   resources :members do
     resources :posts, only: [:new, :create]

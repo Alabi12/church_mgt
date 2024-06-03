@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :members
   
+  has_many :posts, through: :members
 end
