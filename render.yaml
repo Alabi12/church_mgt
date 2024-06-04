@@ -1,6 +1,6 @@
 databases:
   - name: postgresql
-    databaseName: postgresql
+    databaseName: church_mgt_development
     user: postgres
     plan: free
 
