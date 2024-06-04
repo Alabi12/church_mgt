@@ -5,7 +5,7 @@ class MembersController < ApplicationController
   def index
     @members = search_members
     @groups = @members.group_by(&:group)
-    @members = filter_by_group(@members)
+    # @members = filter_by_group(@members)
     @members = filter_by_member_id(@members)
     @members = filter_by_first_name(@members)
     @members = filter_by_generational_group(@members)
@@ -71,7 +71,7 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    params.require(:member).permit(:avatar, :title, :first_name, :last_name, :member_id, :gender, :communion_status, :nationality, :hometown, :region, :profession, :occupation, :employer, :educational_level, :name_of_school, :school_address, :admission_date, :date_of_completion, :course, :date_of_birth, :home_phone, :mobile, :work_phone, :email_address, :postal_address, :house_number, :location, :date_of_baptism, :place_of_baptism, :minister_baptism, :certificate_number_baptism, :date_confirm, :place_of_confirm, :minister_confirm, :certificate_number_confirm, :memory_verse, :date_joined, :marital_status, :date_of_marriage, :type_of_marriage, :place_of_marriage, :how_become_member, :spouse_name, :church_spouse, :mobile_number_spouse, :mobile, :avatar, :group, :group2,
+    params.require(:member).permit(:avatar, :title, :first_name, :last_name, :member_id, :gender, :communion_status, :nationality, :hometown, :region, :profession, :occupation, :employer, :educational_level, :name_of_school, :school_address, :admission_date, :date_of_completion, :course, :date_of_birth, :home_phone, :mobile, :work_phone, :email_address, :postal_address, :house_number, :location, :date_of_baptism, :place_of_baptism, :minister_baptism, :certificate_number_baptism, :date_confirm, :place_of_confirm, :minister_confirm, :certificate_number_confirm, :memory_verse, :date_joined, :marital_status, :date_of_marriage, :type_of_marriage, :place_of_marriage, :how_become_member, :spouse_name, :church_spouse, :mobile_number_spouse, :mobile, :group
     
     )
   end
@@ -83,11 +83,6 @@ class MembersController < ApplicationController
     else
       Member.all
     end
-  end
-
-  def filter_by_group(members)
-    members = members.joins(:cs_members) if params[:group] == 'CS'
-    members
   end
 
   def filter_by_member_id(members)
