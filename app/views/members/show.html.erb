@@ -39,6 +39,10 @@
       <%= render partial: 'ypg', locals: { member: @member } %>
     <% when 'M/F' %>
       <%= render partial: 'mf', locals: { member: @member } %>
+    <% when 'BB' %>
+      <%= render partial: 'bb', locals: { member: @member } %>
+    <% when 'GB' %>
+      <%= render partial: 'gb', locals: { member: @member } %>
     <% else %>
   <% end %>
 <br><hr><br>
