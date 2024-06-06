@@ -1,7 +1,7 @@
 databases:
   - name: church_mgt
     databaseName: church_mgt_production
-    user: postgres
+    user: church_mgt_user
     plan: free
 
 services:
