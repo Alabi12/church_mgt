@@ -1,5 +1,5 @@
 databases:
-  - name: postgresql
+  - name: church_mgt
     databaseName: church_mgt_production
     user: postgres
     plan: free
@@ -14,7 +14,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: postgresql
+          name: church_mgt
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
