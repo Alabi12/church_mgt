@@ -67,6 +67,6 @@ class ChurchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def church_params
-      params.require(:church).permit(:name)
+      params.require(:church).permit(:name, :location)
     end
 end
