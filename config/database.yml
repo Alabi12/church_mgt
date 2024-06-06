@@ -85,7 +85,7 @@ test:
 #
  production:
   <<: *default
-  database: church_mgt_production
+  database: church_mgt_development
   username: postgres
   password: <%= ENV['DATABASE_PASSWORD'] %>
 #
