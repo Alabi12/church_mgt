@@ -1,17 +1,16 @@
 databases:
   - name: postgresql
-    databaseName: church_mgt_development
+    databaseName: church_mgt_production  # Match the production database name in database.yml
     user: postgres
     plan: free
 
 services:
   - type: web
-    name: postgresql
+    name: church_mgt
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
-    # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
-    startCommand: "bundle exec rails server"
+    startCommand: "bundle exec rails server -b 0.0.0.0"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -20,4 +19,4 @@ services:
       - key: RAILS_MASTER_KEY
         sync: false
       - key: WEB_CONCURRENCY
-        value: 2 # sensible default
+        value: "2" # sensible default
