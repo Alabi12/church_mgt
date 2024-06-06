@@ -2,7 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   username: postgres
-  password: wolo
+  password: wolo 
+  port: 5432
   pool: 5
 
 development:
@@ -15,5 +16,6 @@ test:
 
 production:
   <<: *default
+  port: 5432
   database: church_mgt_production
   url: <%= ENV['DATABASE_URL'] %>
