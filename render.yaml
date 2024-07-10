@@ -1,7 +1,7 @@
 databases:
   - name: church_mgt
-    databaseName: church_mgt
-    user: postgres
+    databaseName: church_mgt_production
+    user: church_mgt_user
     plan: free
 
 services:
@@ -10,8 +10,7 @@ services:
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
-    # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
-    startCommand: "bundle exec rails server"
+    startCommand: "bundle exec rails server -b 0.0.0.0"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -20,4 +19,4 @@ services:
       - key: RAILS_MASTER_KEY
         sync: false
       - key: WEB_CONCURRENCY
-        value: 2 # sensible default
+        value: "2"
