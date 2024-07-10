@@ -1,18 +1,23 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: postgres
-  password: wolo
-  port: 5432
   pool: 5
 
 development:
   <<: *default
   database: church_mgt_development
+  username: postgres
+  password: wolo
+  host: localhost
+  port: 5432
 
 test:
   <<: *default
   database: church_mgt_test
+  username: postgres
+  password: wolo
+  host: localhost
+  port: 5432
 
 production:
   <<: *default
