@@ -1,41 +1,66 @@
 <!-- Navigation -->
 <nav class="bg-gray-800 text-white py-4">
   <div class="container mx-auto flex justify-between items-center px-4">
-    <h2 class="text-2xl font-bold">Church Members</h2>
-    <%= form_tag(members_path, method: :get, class: "flex items-center") do %>
-      <%= text_field_tag :search, params[:search], class: "mr-2 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-indigo-500", placeholder: "Search Members" %>
-      <%= submit_tag "Search", class: "px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600" %>
-    <% end %>
-    <%= link_to "New member", new_member_path, class: "text-blue-500 font-bold" %>
-    <%= link_to "Back to Churches", churches_path, class: "text-blue-500 font-bold" %>
+    <div class="flex items-center">
+      <!-- Logo or Title -->
+      <h2 class="text-2xl font-bold">Church Members</h2>
+    </div>
+
+    <!-- Toggle Button for Mobile -->
+    <div class="flex items-center">
+      <!-- Toggle Button -->
+      <button id="toggleNav" class="lg:hidden focus:outline-none">
+        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+
+      <!-- Links -->
+      <div id="navLinks" class="hidden lg:flex lg:items-center lg:space-x-4">
+        <%= link_to "New member", new_member_path, class: "text-blue-500 font-bold" %>
+        <%= link_to "Back to Churches", churches_path, class: "text-blue-500 font-bold" %>
+      </div>
+    </div>
   </div>
 </nav>
 
 <br>
 
-<div class="max-w-xl mx-auto">
-  <p class="text-green-500"><%= notice %></p>
-  
-  <div id="members">
-    <% @members.each do |member| %>
-      <div class="bg-white rounded-lg shadow-md mb-4">
-        <div class="p-4">
-          <p><%= link_to "Show", member, class: "text-blue-500 font-bold hover:underline" %></p>
-          <table>
-            <tr>
-              <td class="px-4 py-2 text-sm font-semibold text-gray-700">First Name:</td>
-              <td class="px-4 py-2 text-sm text-gray-600"><%= member.first_name %></td>
-            </tr>
-            <tr>
-              <td class="px-4 py-2 text-sm font-semibold text-gray-700">Last Name:</td>
-              <td class="px-4 py-2 text-sm text-gray-600"><%= member.last_name %></td>
-            </tr>
-            <!-- Add more attributes here -->
-          </table>
+<div class="max-w-4xl mx-auto bg-cover bg-center" style="background-image: url('<%= asset_path('frontimage.jpg') %>');">
+  <div class="p-8 bg-white bg-opacity-40 rounded-lg shadow-lg">
+    <p class="text-green-500"><%= notice %></p>
+    
+    <div id="members" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <% @members.each do |member| %>
+        <div class="bg-white rounded-lg shadow-md">
+          <div class="p-4">
+            <p><%= link_to "Show", member, class: "text-blue-500 font-bold hover:underline" %></p>
+            <table class="w-full mt-4">
+              <tr>
+                <td class="px-4 py-2 text-sm font-semibold text-gray-700">First Name:</td>
+                <td class="px-4 py-2 text-sm text-gray-600"><%= member.first_name %></td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 text-sm font-semibold text-gray-700">Last Name:</td>
+                <td class="px-4 py-2 text-sm text-gray-600"><%= member.last_name %></td>
+              </tr>
+              <!-- Add more attributes here -->
+            </table>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 
-  <%= render 'grouped_members' %>
+    <%= render 'grouped_members' %>
+  </div>
 </div>
+
+<script>
+  // Toggle navigation links on mobile
+  const toggleNav = document.getElementById('toggleNav');
+  const navLinks = document.getElementById('navLinks');
+
+  toggleNav.addEventListener('click', () => {
+    navLinks.classList.toggle('hidden');
+  });
+</script>
